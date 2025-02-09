@@ -1,75 +1,53 @@
-// Ivan Escarciga
-// Chpt2 PA
-
-#include <stdio.h>
+#include <stdio.h> 
 #include <string.h>
 
 char* ReverseString(char* stringToReverse) {
 	/* TODO: Complete recursive ReverseString() function here. */
-	
-	int front = 0; // used for front tracking
-	int back = 0 ; // used for back tracking
-	char temp = 'z'; // used for swapping
-	int stringLength = 0;// used for string length
-	
-	stringLength = strlen(stringToReverse);
-	front = 0; //initilaizing vars
-	back = stringLength -1;
 
-	for (int count = 0; count <= stringLength; count++) {
-		
-		//swap
-		temp = stringToReverse[front];
-		printf("temp = %c\n", temp);
-		stringToReverse[front] = stringToReverse[back];
-		printf("front = %c\n", stringToReverse[front] );
-		stringToReverse[back] = temp;
-			
-		if (front == back + 1) {printf("nooo");break;}
+	
+	//char* charPointer;
+	char returnString[20] = "";
+	char subString[20] = "";
+	int count = 0;
+	int i = 0;
+	//charPointer = &stringToReverse[0];
 
-		if (front == back) {break;}
-		front++;
-		back--;
-		printf("iterated\n");
-	} // count for
-	
-	printf("%d\n", stringLength);
-	
-	return stringToReverse;
+     
+	/*displays count to verify string contents*/
+	count = strlen(stringToReverse);
+	printf("Debug:  count = %4d   String: %4s  ", count, stringToReverse);
 	
 	
+	/*gets count and*/
+	if (count != 0) {
+	returnString[count - 1] = stringToReverse[0];
+	}//if
 	
-	
-	/*
-	int stringLength = 0; // used to store strgin length
-	int count = 0; //a counting Var
-	int reverseCount = 0; //for counting the opposite way of count	
-	char reversedString[50] = ""; // used for transferring string
-	char* Return;
-	
-	//get string lenght
-	stringLength = strlen(stringToReverse); // this gets the array length
-	printf("array length = %d\n", stringLength);
-	
-	
+	/*Makes substring*/
+	    	
+	for (i = 1; i < count; i++){
+	subString[i-1] = stringToReverse[i];
+	}//for
 
-	int testCount = 0;
-	while (stringToReverse[testCount] != '\0'){
-	testCount ++;
-	}
-	printf("arraly Length, manual = %d\n", testCount);
-		
-	reverseCount = stringLength; //initalize reverse count	
-	for (count = 0; count < stringLength; count++) {
-		reversedString[count] = stringToReverse[reverseCount];
-		reverseCount--; //iterating through passed in string backwards	
-	}//for count
 	
-	Return = reversedString;
-	//assign OG string as walking backwards as itterating backwards through the string until 0
+	/*displays substring for verification*/
+	printf("Sub String:%s   ", subString);
+	
+	
+	/*this is the problem child*/
+		//this first string displays "ahhh" verifying it works, 
+		//but then the next if statement it crashes
+	if(stringToReverse[0] == '\0') {printf("AHHH\n");} // adding this line again does not segfault
+		//this is where it crashes, expected return in main:yay\n Reversed: test
+	if(stringToReverse[0] == '\0') {
+    	printf("yay"); //removing this doesn not help
+        return "test"; 
+	} 
 
-	*/
-	//return "owo";
+	printf("itterated\n");   
+	/*Testing in progress; I want to return reverseString, but it gives me trouble*/
+	strcat(ReverseString(subString) , &stringToReverse[count-1]);
+		//function			//last char
 }
 
 int main(void) {

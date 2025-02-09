@@ -39,15 +39,15 @@ char* ReverseString(char* stringToReverse) {
 		//but then the next if statement it crashes
 	if(stringToReverse[0] == '\0') {printf("AHHH\n");} // adding this line again does not segfault
 		//this is where it crashes, expected return in main:yay\n Reversed: test
-	if(stringToReverse[0] == '\0') {
-    	printf("yay"); //removing this doesn not help
-        return "test"; 
-	} 
-
+	if(stringToReverse[0] == '\0') {printf("yay\n"); return "test";}
+	
 	printf("itterated\n");   
 	/*Testing in progress; I want to return reverseString, but it gives me trouble*/
 	strcat(ReverseString(subString) , &stringToReverse[count-1]);
 		//function			//last char
+		
+
+	printf("end");
 }
 
 int main(void) {

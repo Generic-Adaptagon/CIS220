@@ -1,53 +1,39 @@
+// Ivan Escarciga
+//Chpt2 PA
+/*Thank you for you help with this. It took me a long time to understand what is happening.
+Thinking recursivly is crazy hard for me.*/
 #include <stdio.h> 
 #include <string.h>
 
 char* ReverseString(char* stringToReverse) {
-	/* TODO: Complete recursive ReverseString() function here. */
 
-	
-	//char* charPointer;
-	char returnString[20] = "";
-	char subString[20] = "";
+	char* newArray;
 	int count = 0;
 	int i = 0;
-	//charPointer = &stringToReverse[0];
+	
+	/*Gathers the number of the characters*/
+	count = strlen(stringToReverse);	
+	
+	/*at count == 1, the string concists of only the last 
+	character so no need to contiune the function calls*/
+	if (count == 1){	
+		return stringToReverse;
+	} else {
 
-     
-	/*displays count to verify string contents*/
-	count = strlen(stringToReverse);
-	printf("Debug:  count = %4d   String: %4s  ", count, stringToReverse);
-	
-	
-	/*gets count and*/
-	if (count != 0) {
-	returnString[count - 1] = stringToReverse[0];
-	}//if
-	
-	/*Makes substring*/
-	    	
-	for (i = 1; i < count; i++){
-	subString[i-1] = stringToReverse[i];
-	}//for
 
-	
-	/*displays substring for verification*/
-	printf("Sub String:%s   ", subString);
-	
-	
-	/*this is the problem child*/
-		//this first string displays "ahhh" verifying it works, 
-		//but then the next if statement it crashes
-	if(stringToReverse[0] == '\0') {printf("AHHH\n");} // adding this line again does not segfault
-		//this is where it crashes, expected return in main:yay\n Reversed: test
-	if(stringToReverse[0] == '\0') {printf("yay\n"); return "test";}
-	
-	printf("itterated\n");   
-	/*Testing in progress; I want to return reverseString, but it gives me trouble*/
-	strcat(ReverseString(subString) , &stringToReverse[count-1]);
-		//function			//last char
+		/*points to the first character in the aray, then passes in the 
+		Sub String by incrementing the String value by one.*/
+		newArray = ReverseString(stringToReverse + 1); 
 		
-
-	printf("end");
+		/*Takes the first character of the sub string and 
+		sets it in reverse order in the new string*/
+		newArray[count - 1] = stringToReverse[0]; 
+																						
+		/*places '\0' at then end of any/all reversed string*/
+		newArray[count] = '\0';
+																						
+		return newArray;
+	}
 }
 
 int main(void) {

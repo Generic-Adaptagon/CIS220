@@ -24,10 +24,10 @@ int* copyArray (int output[], int input[]);
 
 int main () {
 	
-int randNumbers[MAX] = {0};
-int sortedArray[MAX] = {0};
-srand(time(NULL));
-int n = MAX;
+int randNumbers[MAX] = {0}; // for storing the randum nubers
+int sortedArray[MAX] = {0}; // for storing the sorted numbes
+srand(time(NULL)); // for random numbers
+int n = MAX; // for bubble sort function
 
 	/*generates the random array of numbers*/
 	randNumberGen(randNumbers);
@@ -38,7 +38,7 @@ int n = MAX;
 	/*Sorts array*/
 	BubbleSort(randNumbers, n);
 
-	/*Prints sorted array*/
+	/*Prints sorted and random array*/
 	printArray(randNumbers, sortedArray);
 	return 1;
 }// MAIN
@@ -46,12 +46,15 @@ int n = MAX;
 
 int* copyArray (int output[], int input[]) {
 	int count = 0;
+	/*copies the array of input to output*/
 	for (count = 0; count < MAX; count++) {
 		output[count] = input[count];		
 	}
 	
 	return output;
 }
+
+
 
 int* BubbleSort(int Array[], int n){
 	int count = 0;
@@ -72,12 +75,14 @@ int* BubbleSort(int Array[], int n){
 	 
 	 return Array;
 }//bubble
+
+
+
 int* randNumberGen (int blank[]) {
 	int count = 0; 
 	
 	/*loops through each element and assigns it a number*/
 	for (count = 0; count < MAX; count++) {
-		
 		/*sets array element to a number between 0 and MAX_NUM*/
 		blank[count] = rand() % (MAX_NUM +1);
 	}//for
@@ -85,6 +90,8 @@ int* randNumberGen (int blank[]) {
 	return blank;
 	
 }// randgen
+
+
 
 void printArray (int sorted[], int ran[]) {
 	

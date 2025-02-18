@@ -1,10 +1,8 @@
 #include <stdio.h>
-
+//This is my first Git/GitHub file
 int main() {
 
-printf("yooo, what is the up world?\n");
-//yo lamo
-//lamo
+printf("Hello World!!\n");
 
 return 0;
 

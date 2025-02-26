@@ -14,7 +14,47 @@ typedef struct List {
     Node* head;
     Node* tail;
 } List;
+Node* allocateNewNode(int item) ;void initList(List* list) ;
+void ListAppendNode(List* list, Node* newNode) ;
+void ListAppend(List* list, int item) ;
+void ListPrependNode(List* list, Node* newNode) ;
+void ListPrepend(List* list, int item) ;
+Node* ListSearch(List *list, int key) ;
+void ListInsertNodeAfter(List* list, Node* currentNode, Node* newNode) ;
+int ListInsertAfter(List *list, int currentItem, int newItem) ;
+void ListRemoveNodeAfter(List* list, Node* curNode) ;
+int ListRemove(List *list, int itemToRemove) ;
+void ListTraverse(List* list) ;
+Node* ListFindInsertionPosition(List* list, int dataValue) ;
+void ListInsertionSortSinglyLinked(List* list) ;
 
+// Implement sumDataValues function
+
+// main function
+int main() {
+    
+/*Add a function called sumDataValues that sums the data values for each node and returns the sum as an int.
+Implement the main() function to do the following:
+
+    Display the list
+    Sum and display the sum of the node values
+    Append a node with a data value of 10 to the linked list
+    Append a node with a data value of 20 to the linked list
+    Prepend a node with a data value of 30 to the linked list
+    Insert a node with a data value of 40 after the head node in the linked list
+    Insert a node with a data value of 50 at the end of the linked list
+    Insert a node with a data value of 60 after the node with a data value of 10 in the linked list
+    Insert a node with a data value of 70 after the node with a data value of 40 in the linked list
+    Display the list
+    Remove the head node
+    Remove the node after the node with a data value of 70
+    Display the list
+    Search for the node with a data value of 50 and display if it was found or not found
+    Search for the node with a data value of 15 and display if it was found or not found
+    Sort and display the list
+    Sum and display the sum of the node values*/
+    return 0;
+}
 // Function to allocate memory for a new node and initialize it with data
 Node* allocateNewNode(int item) {
     Node* newNode = (Node*)malloc(sizeof(Node));
@@ -214,32 +254,4 @@ void ListInsertionSortSinglyLinked(List* list) {
 		// Move to the next node in the original list
         curNode = next;
     }
-}
-
-// Implement sumDataValues function
-
-// main function
-int main() {
-    
-/*Add a function called sumDataValues that sums the data values for each node and returns the sum as an int.
-Implement the main() function to do the following:
-
-    Display the list
-    Sum and display the sum of the node values
-    Append a node with a data value of 10 to the linked list
-    Append a node with a data value of 20 to the linked list
-    Prepend a node with a data value of 30 to the linked list
-    Insert a node with a data value of 40 after the head node in the linked list
-    Insert a node with a data value of 50 at the end of the linked list
-    Insert a node with a data value of 60 after the node with a data value of 10 in the linked list
-    Insert a node with a data value of 70 after the node with a data value of 40 in the linked list
-    Display the list
-    Remove the head node
-    Remove the node after the node with a data value of 70
-    Display the list
-    Search for the node with a data value of 50 and display if it was found or not found
-    Search for the node with a data value of 15 and display if it was found or not found
-    Sort and display the list
-    Sum and display the sum of the node values*/
-    return 0;
 }

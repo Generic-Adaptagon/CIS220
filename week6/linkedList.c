@@ -27,34 +27,137 @@ int ListRemove(List *list, int itemToRemove) ;
 void ListTraverse(List* list) ;
 Node* ListFindInsertionPosition(List* list, int dataValue) ;
 void ListInsertionSortSinglyLinked(List* list) ;
+/*Added functions(may have gone overboard)*/
+int sumDataValues(List* list) ;
+void printList (List* list);
+void findNode(List* list, int key);
+void sumAndPrint(List* list);
 
-// Implement sumDataValues function
 
 // main function
 int main() {
-    
-/*Add a function called sumDataValues that sums the data values for each node and returns the sum as an int.
-Implement the main() function to do the following:
+/*Initalize list and varaiables to help the list preform its neccessary functions*/
+	struct List mainList = {NULL, NULL}; //creates List called mainList
+	List* listPtr;//creates list pointer for main list
+	listPtr = &mainList; //assigns pointer for passing MainList into functions.
+	Node* newNodePtr; // node pointer for creating new nodes
+	Node* currNodeptr; // a node pointer for passing a second node into a function
+	newNodePtr = NULL;//assigns to Null to prevent SegFaults
+	currNodeptr = NULL;//assigns to Null to prevent SegFaults
 
-    Display the list
-    Sum and display the sum of the node values
-    Append a node with a data value of 10 to the linked list
-    Append a node with a data value of 20 to the linked list
-    Prepend a node with a data value of 30 to the linked list
-    Insert a node with a data value of 40 after the head node in the linked list
-    Insert a node with a data value of 50 at the end of the linked list
-    Insert a node with a data value of 60 after the node with a data value of 10 in the linked list
-    Insert a node with a data value of 70 after the node with a data value of 40 in the linked list
-    Display the list
-    Remove the head node
-    Remove the node after the node with a data value of 70
-    Display the list
-    Search for the node with a data value of 50 and display if it was found or not found
-    Search for the node with a data value of 15 and display if it was found or not found
-    Sort and display the list
-    Sum and display the sum of the node values*/
+	/*display the list*/
+	printList(listPtr);
+	
+	/* Sum and display node values*/
+	sumAndPrint(listPtr);
+	
+    /*Append a node with a data value of 10, 20, and prepend 30 to the linked list*/
+	ListAppend(listPtr, 10);
+	ListAppend(listPtr, 20);
+	ListPrepend(listPtr, 30);
+	
+    /*Insert a node with a data value of 40 after the head node in the linked list*/
+		//use currNode as head for insertafter function.
+	currNodeptr = listPtr->head; 
+	ListInsertAfter(listPtr, currNodeptr->data, 40);
+	
+    /*Insert a node with a data value of 50 at the end of the linked list*/
+	ListAppend(listPtr, 50);
+	
+    /*Insert a node with a data value of 60 after the node with a data value of 10 in the linked list*/
+		//Use curnode as the data value 10 node to pass into listinsertafter function
+	currNodeptr = ListSearch(listPtr, 10);
+	ListInsertAfter(listPtr, currNodeptr->data, 60);
+	
+    /*Insert a node with a data value of 70 after the node with a data value of 40 in the linked list*/
+		//Use curnode as the data value 40 node to pass into listinsertafter function
+	currNodeptr = ListSearch(listPtr, 40);
+	ListInsertAfter(listPtr, currNodeptr->data, 70);	
+	
+    /*Display the list*/
+	printList(listPtr); 
+	
+	/*Remove the head node*/
+		/*Use curnode as the data value before head node listRemoveNode function	*/
+ 	currNodeptr = NULL;
+	ListRemoveNodeAfter(listPtr, currNodeptr);
+	
+    /*Remove the node after the node with a data value of 70*/
+		//Use curnode as the data value of 70 fo listRemoveNodeafter function	
+	currNodeptr = ListSearch(listPtr, 70);
+	ListRemoveNodeAfter(listPtr, currNodeptr);
+	
+    /*Display the list
+		printList(listPtr); 	
+		
+    /*Search for the node with a data value of 50 and display if it was found or not found*/
+	findNode(listPtr, 50);
+
+    /*Search for the node with a data value of 15 and display if it was found or not found*/
+	findNode(listPtr, 15);
+	
+    /*Sort and display the list*/
+	ListInsertionSortSinglyLinked(listPtr);//sort
+	printList(listPtr);//display
+	
+    /*Sum and display the sum of the node values*/
+	sumAndPrint(listPtr);
     return 0;
 }
+
+	/*function summs the data using sumDataValues function and prints results*/
+void sumAndPrint(List* list){
+	int sumValue = 0;// to hold the Sum Value Data
+	
+	sumValue = sumDataValues(list);//use other function to get total
+	/*print header*/
+	printf("The sum of all nodes is: %d.\n", sumValue);
+	/*print list*/
+	printList(list);
+	
+}//sum and print
+	
+	/* this function finds the node with the specificed data value, using ListSearch, 
+		and displays wheather it was found or not*/
+void findNode(List* list, int key){
+	/*creates node pointer to receive value from ListSearch*/
+	Node* curNode;
+	curNode = ListSearch(list, key);
+	
+	/*if found, print found. If not, print not found*/
+	if (curNode != NULL){
+		printf("Data node %d was found\n.", key);
+	} else {
+		printf("Data node %d was NOT found\n.", key);
+	}
+	return;
+}// findNode
+
+/*Prints the list header and new line; Uses ListTraverse ro print raw data values.*/
+void printList (List* list){
+	/*prints header*/
+	printf("List: ");
+	/*print raw list data*/
+	ListTraverse(list);
+	return;
+}//printList
+
+int sumDataValues(List* list) {
+	int sum = 0;
+	//set curr node to head node
+	Node *curNode = list->head;
+	/*while node has data*/
+    while (curNode != NULL) {
+    
+        sum = sum + curNode->data; // adds data
+        curNode = curNode->next; // moves to next node
+    }
+    return sum;
+
+}//sum data values
+
+/*end of custom functions*/
+
 // Function to allocate memory for a new node and initialize it with data
 Node* allocateNewNode(int item) {
     Node* newNode = (Node*)malloc(sizeof(Node));

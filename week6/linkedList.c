@@ -1,4 +1,4 @@
-// Your name
+// Ivan Escarciga
 // Chpt4 PA
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +31,6 @@ void ListInsertionSortSinglyLinked(List* list) ;
 int sumDataValues(List* list) ;
 void printList (List* list);
 void findNode(List* list, int key);
-void sumAndPrint(List* list);
 
 
 // main function
@@ -44,12 +43,14 @@ int main() {
 	Node* currNodeptr; // a node pointer for passing a second node into a function
 	newNodePtr = NULL;//assigns to Null to prevent SegFaults
 	currNodeptr = NULL;//assigns to Null to prevent SegFaults
+	int sum = 0; // for sum with no display functionality
 
 	/*display the list*/
 	printList(listPtr);
 	
 	/* Sum and display node values*/
-	sumAndPrint(listPtr);
+	sum = sumDataValues(listPtr);
+	printf("The sum of all nodes is: %d\n", sum);
 	
     /*Append a node with a data value of 10, 20, and prepend 30 to the linked list*/
 	ListAppend(listPtr, 10);
@@ -98,24 +99,16 @@ int main() {
 	
     /*Sort and display the list*/
 	ListInsertionSortSinglyLinked(listPtr);//sort
+	printf("Sorted ");
 	printList(listPtr);//display
 	
     /*Sum and display the sum of the node values*/
-	sumAndPrint(listPtr);
+	sum = sumDataValues(listPtr);//use other function to get total
+	/*print header*/
+	printf("The sum of all nodes is: %d.\n", sum);
     return 0;
 }
 
-	/*function summs the data using sumDataValues function and prints results*/
-void sumAndPrint(List* list){
-	int sumValue = 0;// to hold the Sum Value Data
-	
-	sumValue = sumDataValues(list);//use other function to get total
-	/*print header*/
-	printf("The sum of all nodes is: %d.\n", sumValue);
-	/*print list*/
-	printList(list);
-	
-}//sum and print
 	
 	/* this function finds the node with the specificed data value, using ListSearch, 
 		and displays wheather it was found or not*/
@@ -126,9 +119,9 @@ void findNode(List* list, int key){
 	
 	/*if found, print found. If not, print not found*/
 	if (curNode != NULL){
-		printf("Data node %d was found\n.", key);
+		printf("Data node %d was found.\n", key);
 	} else {
-		printf("Data node %d was NOT found\n.", key);
+		printf("Data node %d was NOT found.\n", key);
 	}
 	return;
 }// findNode

@@ -1,4 +1,4 @@
-// Your name
+// Ivan Escarciga
 // Chpt4 PA
 #include <stdio.h>
 #include <stdlib.h>
